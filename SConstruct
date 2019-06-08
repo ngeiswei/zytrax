@@ -61,8 +61,10 @@ if (env["platform"]=="windows"):
 
 
 if (env["platform"]=="freedesktop"):
-	env["enable_vst2"]=False # not supported
+	env["enable_vst2"]=True # not supported
 	env.Append(CXXFLAGS=["-DFREEDESKTOP_ENABLED"])
+	if (env["enable_vst2"]):	
+		env.Append(CXXFLAGS=["-DVST2_ENABLED"])
 	if (env["use_pulseaudio"]):
 		env.Append(CXXFLAGS=["-D__LINUX_PULSE__"])
 		env.ParseConfig("pkg-config libpulse --libs --cflags")
